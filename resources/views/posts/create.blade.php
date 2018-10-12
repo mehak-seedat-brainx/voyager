@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             {{Form::label('body', 'Body')}}
-            {{Form::textarea('body', '',['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body Text'])}}
+            {{Form::textarea('body', '',['class' => 'form-control', 'placeholder' => 'Body Text'])}}
         </div>
         <div class="form-group">
             {{Form::file('cover_image')}}

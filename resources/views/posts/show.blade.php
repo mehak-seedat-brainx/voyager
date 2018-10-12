@@ -2,7 +2,9 @@
 @section('content')
         <a href="/lsapp/public/posts" class="btn btn-default">Back</a>
         <h3>{{$post->title}}</h3>
-        <img style="max-width:100%;" src="../storage/cover_images/{{$post->cover_image}}">
+        @if($post->cover_image!='noimage.jpg')
+                <img style="max-width:100%;" src="../storage/cover_images/{{$post->cover_image}}">
+        @endif
         <br>
         <br>
         <div>

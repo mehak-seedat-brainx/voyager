@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-md-8 col-sm-8">
                         <h6>
-                            <a href="/lsapp/public/posts/{{$post->id}}">
+                            <a href="{{ url('/posts/'.$post->id) }}">
                                 {{$post->title}}
                             </a>
                         </h6>

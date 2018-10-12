@@ -6,7 +6,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
                     <div class="panel-body">
-                        <a href="/lsapp/public/posts/create" class="btn btn-primary">
+                        <a href="{{ url('/posts/create') }}" class="btn btn-primary">
                             Create A Post
                         </a>
                         @if(count($posts)>0)

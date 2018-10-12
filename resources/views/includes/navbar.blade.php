@@ -21,9 +21,9 @@
                 &nbsp;
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="/lsapp/public/about">About</a></li>
-                <li><a href="/lsapp/public/services">Services</a></li>
-                <li><a href="/lsapp/public/posts">Blog</a></li>
+                <li><a href="{{ url('/about') }}">About</a></li>
+                <li><a href="{{ url('/services') }}">Services</a></li>
+                <li><a href="{{ url('/posts') }}">Blog</a></li>
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
