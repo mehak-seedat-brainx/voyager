@@ -13,12 +13,18 @@
                             <h3>Your Posts</h3>
                             <table class="table table-striped">
                                 <tr>
+                                    <th></th>
                                     <th>Title</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
                                 @foreach($posts as $post)
                                     <tr>
+                                        <td>
+                                            @if($post->cover_image!='noimage.jpg')
+                                                <img style="max-width:100%; height:30px;" src="storage/cover_images/{{$post->cover_image}}">
+                                            @endif
+                                        </td>
                                         <td>
                                             {{$post->title}}
                                         </td>
