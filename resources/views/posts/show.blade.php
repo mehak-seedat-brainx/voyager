@@ -14,7 +14,7 @@
         <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
         <hr>
         @if(!Auth::guest())
-                @if(Auth::user()->id == $post->user_id)
+                @if(Auth::user()->id == $post->author_id)
                         <a href="/lsapp/public/posts/{{$post->id}}/edit" class="btn btn-default">
                                 Edit
                         </a>

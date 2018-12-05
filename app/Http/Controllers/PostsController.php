@@ -29,7 +29,7 @@ class PostsController extends Controller
         //
         //$posts=Post::orderBy('title', 'desc')->get();
         //$posts=DB::select('SELECT * FROM posts');
-        $posts=Post::orderBy('created_at', 'desc')->paginate(11);
+        $posts=Post::paginate(11);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -74,7 +74,7 @@ class PostsController extends Controller
         $post=new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
-        $post->user_id=auth()->user()->id;
+        $post->author_id=auth()->user()->id;
         $post->cover_image=$filenNameToStore;
         $post->save();
         return redirect('/home')->with('success', 'Post Created');
@@ -104,7 +104,7 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        if(auth()->user()->id != $post->user_id) {
+        if(auth()->user()->id != $post->author_id) {
             return redirect('/posts')->with('error','Permission Denied');
         }
         return view('posts.edit')->with('post',$post);
@@ -148,7 +148,7 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        if(auth()->user()->id != $post->user_id) {
+        if(auth()->user()->id != $post->author_id) {
             return redirect('/posts')->with('error','Permission Denied');
         }
         if($post->cover_image!='noimage.jpg') {
