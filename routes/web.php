@@ -14,8 +14,24 @@ use TCG\Voyager\Facades\Voyager;
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/projects', 'ProjectController@index')->name('projects');
+
 Route::get('/about', 'PagesController@about');
+Route::get('/loadmore', 'ProjectController@loadmore');
+Route::get('/filteredprojects', 'ProjectController@filter');
+
+Route::get('/solutions', 'PagesController@solutions');
 Route::get('/services', 'PagesController@services');
+Route::get('/company', 'PagesController@company');
+Route::get('/contact', 'PagesController@contact');
+Route::get('/policy', 'PagesController@policy');
+Route::get('/terms', 'PagesController@terms');
+
+
+
+Route::get('projects/{id}', 'ProjectController@show');
+
+
 Route::resource('posts', 'PostsController');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

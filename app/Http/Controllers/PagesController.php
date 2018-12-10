@@ -5,30 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Project;
 
 class PagesController extends Controller
 {
     public function index() {
         $title='Home!';
-        if(Auth::guest()) {
-            return view('pages.index', compact('title'));
-        }
-        else {
-            $user_id=auth()->user()->id;
-            $user=User::find($user_id);
-            return view('home')->with('posts', $user->posts);
-        }
+       $projects = Project::all();
+            return view('index')->with('projects',$projects);
+
     }
     public function about() {
         $title='About!';
         return view ('pages.about')->with('title', $title);
     }
     public function services() {
-        $data=array(
-            'title' => 'Services:',
-            'services' => ['Web', 'Mobile']
 
-        );
-        return view ('pages.services')->with($data);
+        return view ('services');
+    }
+    public function solutions ()
+    {
+        return view('solution');
+    }
+    public function company() {
+        return view('company');
+    }
+    public function contact() {
+        return view('contact-us');
+    }
+    public function policy() {
+        return view('privacy-policy');
+    }
+    public function terms() {
+        return view('term-of-services');
     }
 }
