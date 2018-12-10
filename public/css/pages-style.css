@@ -4,13 +4,13 @@ body
 }
 .services-main-div
 {
-	background-color: white; 
-	padding-top: 150px; 
+	background-color: white;
+	padding-top: 150px;
 	padding-bottom: 60px;
 }
 .servcies-main
 {
-	
+
 	/*background-color: #F2F6F7;*/
 	text-align: center;
 }
@@ -61,7 +61,7 @@ body
 	border: 1px solid #D9DEE0;
 	border-bottom: 1px solid #D9DEE0 !important;
 	padding: 0px !important;
-	
+
 	position: relative;
 }
 
@@ -140,7 +140,7 @@ body
 }
 .text-section span
 {
-	display: none; 
+	display: none;
 	color: #455963;
 }
 .text-section p, .panel-body p
@@ -161,10 +161,10 @@ body
 }
 .button-glyphcon, .button-glyphcon2, .button-glyphcon3, .button-glyphcon4, .button-glyphcon5, .button-glyphcon6
 {
-	border-radius: 50%;  
-	width:30px; 
-	text-align: center; 
-	background-color: #03A8F5;  
+	border-radius: 50%;
+	width:30px;
+	text-align: center;
+	background-color: #03A8F5;
 	height: 30px;
 	padding: 14px 0px 0px 5px;
 	float: right;
@@ -177,7 +177,7 @@ body
 {
 	-ms-transform: rotate(44deg); /* IE 9 */
 	-webkit-transform: rotate(44deg); /* Chrome, Safari, Opera */
-	transform: rotate(44deg); 
+	transform: rotate(44deg);
 	padding-top: 1px;
 	padding-left: 1px;
 	display: none;
@@ -186,7 +186,7 @@ body
 {
 	border:1px solid white;
 	width: 20px;
-	position: absolute; 
+	position: absolute;
 }
 .gly-button-bar2
 {
@@ -276,7 +276,7 @@ body
 		position: relative;
 		top: 13px;
 		float: left;
-		left: 44%;	
+		left: 44%;
 	}
 	.servcies-section-img, .servcies-section-img2,  .servcies-section-img3, .servcies-section-img4, .servcies-section-img5, .servcies-section-img6
 	{
@@ -292,7 +292,7 @@ body
 	}
 	.panel-body
 	{
-		padding: 0 !important; 
+		padding: 0 !important;
 	}
 	.section-img
 	{
@@ -306,9 +306,9 @@ body
 	padding: 3em 2em 2em 2em;
 }
 
-.group { 
-	position: relative; 
-	margin-bottom: 45px; 
+.group {
+	position: relative;
+	margin-bottom: 45px;
 }
 
 .contact-input input, .contact-input select, .contact-input textarea {
@@ -338,7 +338,7 @@ body
 /* Label */
 
 .contact-input label {
-	color: #455963; 
+	color: #455963;
 	font-size: 1.3rem;
 	position: absolute;
 	pointer-events: none;
@@ -362,7 +362,7 @@ body
 	top: -20px;
 	-webkit-transform: scale(.75);
 	transform: scale(.75); left: -2px;
-	font-size: 14px; 
+	font-size: 14px;
 	color: #4a89dc;
 }
 
@@ -375,12 +375,12 @@ body
 
 .bar:before, .bar:after {
 	content: '';
-	height: 2px; 
+	height: 2px;
 	width: 0;
-	bottom: 1px; 
+	bottom: 1px;
 	position: absolute;
-	background: #4a89dc; 
-	-webkit-transition:all 0.2s ease; 
+	background: #4a89dc;
+	-webkit-transition:all 0.2s ease;
 	transition: all 0.2s ease;
 }
 
@@ -400,19 +400,19 @@ body
 .drop-icon
 {
 	background: url('../img/logo/download.svg');
-	height: 18px; 
-	width: 18px; 
-	position: absolute; 
+	height: 18px;
+	width: 18px;
+	position: absolute;
 	left: 93%;
 	top: 27%;
 	pointer-events: none;
 }
 .error-span
 {
-	color: red; 
-	font-size: 10px; 
+	color: red;
+	font-size: 10px;
 	font-family: 'Nunito Sans', sans-serif;
-	font-weight: 300; 
+	font-weight: 300;
 	visibility: hidden;
 	text-transform: uppercase;
 }
@@ -481,7 +481,7 @@ body
 	font-family: 'Nunito Sans', sans-serif;
 	font-weight: 200;
 	font-size: 1.8rem;
-	
+
 	font-style: normal;
 	line-height: 2;
 	letter-spacing: 0;
@@ -605,15 +605,15 @@ body
 	font-size: 1.4rem;
 	text-transform: uppercase;
 	color: #455963;
-	cursor: pointer;     
+	cursor: pointer;
 	padding-left: 1.8rem;
 }
 .select-design
 {
-	height: 45px; 
-	width: 100%; 
-	border:1px solid #d9dee0;    
-	padding-left: 1.8rem; 
+	height: 45px;
+	width: 100%;
+	border:1px solid #d9dee0;
+	padding-left: 1.8rem;
 	border-radius: 3px;
 	cursor: pointer;
 }
@@ -663,11 +663,11 @@ body
 	.port-btn-all
 	{
 		margin-bottom: 20px;
-	}	
+	}
 	.select-design
 	{
 		margin-bottom: 20px;
-		height: 40px; 
+		height: 40px;
 	}
 	.lable-span
 	{
@@ -701,7 +701,7 @@ body
 .portfolio-project a:hover, .portfolio-project a:active, .portfolio-project a:link, .portfolio-project a:visited
 {
 	text-decoration:none;
-} 
+}
 .project-heading
 {
 	padding-top: 80px;
@@ -726,7 +726,7 @@ body
 	pointer-events: all;
 	border-color: white !important;
 	color: white !important;
-	background-color: initial; 
+	background-color: initial;
 }
 .portfolio-project {
 	pointer-events: none;
@@ -815,7 +815,7 @@ body
 		margin-bottom: 20%;
 	}
 }
-a 
+a
 {
 	color: black;
 }
@@ -1079,7 +1079,7 @@ a
 }
 .benefit-section
 {
-	
+
 	padding-top: 50px;
 	text-align: center;
 	padding: 5% 30% 0 30%;
@@ -1235,9 +1235,9 @@ a
 }
 .img-tittle, .img-tittle2
 {
-	
+
 	margin-top: 10%;
-	
+
 }
 .img-tittle2 span
 {
@@ -1271,7 +1271,7 @@ a
 {
 	color: white !important;
 }
-.btn-solution, .btn-solution2, .btn-solution3, .btn-solution4 
+.btn-solution, .btn-solution2, .btn-solution3, .btn-solution4
 {
 	margin-bottom: 35px;
 	padding-top: 0px;
@@ -1412,7 +1412,7 @@ a
 		margin-top: 30px !important;
 	}
 
-	.video-des 
+	.video-des
 	{
 		font-size: 2.1rem;
 	}
@@ -1643,15 +1643,15 @@ a
 		padding-top: 10px;
 		margin-bottom: 0px;
 	}
-	.approach-banner-text p 
+	.approach-banner-text p
 	{
 		font-size: 1.9rem;
 	}
-	.home-link 
+	.home-link
 	{
 		padding: 15px 0px 15px 15px;
 	}
-	.approach-top-row 
+	.approach-top-row
 	{
 		padding-bottom: 50px;
 	}
@@ -1661,7 +1661,7 @@ a
 		font-weight: 900;
 		margin-bottom: 30px;
 	}
-	.approach-img-div img 
+	.approach-img-div img
 	{
 		width: 35%;
 		margin-top: 50px;
@@ -1685,7 +1685,7 @@ a
 	.heading-sect1
 	{
 		float: left;
-		padding: 0 !important; 
+		padding: 0 !important;
 	}
 	.approach-row3 img
 	{
@@ -1759,10 +1759,10 @@ a
 }
 .line-div hr
 {
-	margin: 0px; 
-	padding-right: 0px; 
-	padding-left: 0px;   
-	border: 0.5px solid #455963;    
+	margin: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	border: 0.5px solid #455963;
 	margin-bottom: 29px; width: 65%;
 }
 .line-div span
@@ -1829,21 +1829,21 @@ a
 	{
 		padding-top: 50px;
 	}
-	.blog-video-row 
+	.blog-video-row
 	{
 		padding: 100px 9px 0 9px;
 	}
-	.line-div img 
+	.line-div img
 	{
 		width: 16px;
 		left: 88%;
 	}
-	.line-div span 
+	.line-div span
 	{
 		left: 62%;
 		font-size: 1.0rem;
 	}
-	.line-div hr 
+	.line-div hr
 	{
 		width: 60%;
 	}
@@ -2004,7 +2004,7 @@ a
 .what-next
 {
 	padding: 0 !important;
-	
+
 }
 .sixth-sect
 {
@@ -2058,11 +2058,11 @@ a
 		padding-right: 9px;
 		text-align: left;
 	}
-	.second-sect img 
+	.second-sect img
 	{
 		width: 30vw;
 	}
-	.second-sect div 
+	.second-sect div
 	{
 		font-size: 2.0rem;
 		padding: 0 5% 0 5%;
