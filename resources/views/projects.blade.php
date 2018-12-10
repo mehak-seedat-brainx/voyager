@@ -46,39 +46,11 @@
 							<li>
 								<input type="checkbox" value="" id="ckbCheckAll" /><span>Select all</span>
 							</li>
-							<li>
-								<input type="checkbox" class="industrycheckbox" value="Education" id="education"/><span>Education</span>
-							</li>
-							<li>
-								<input type="checkbox" class="industrycheckbox" value="News & Magazine" id="news"/><span>News & Magazine</span>
-							</li>
-							<li>
-								<input type="checkbox" class="industrycheckbox" value="Finance" id="finance"/><span>Finance</span>
-							</li>
-							<li>
-								<input type="checkbox" class="industrycheckbox" value="Healthcare" id="healthcare"/><span>Healthcare</span>
-							</li>
-							<li>
-								<input type="checkbox" class="industrycheckbox" value="Entertainment" id="entertainment"/><span>Entertainment</span>
-							</li>
-                            <li>
-                                <input type="checkbox" class="industrycheckbox" value="Social Networking" id="social"/><span>Social Networking</span>
-                            </li>
-                            <li>
-                                <input type="checkbox" class="industrycheckbox" value="Charity & Donations" id="charity"/><span>Charity & Donations</span>
-                            </li>
-                            <li>
-                                <input type="checkbox" class="industrycheckbox" value="Translation" id="translation"/><span>Translation</span>
-                            </li>
-							<li>
-								<input type="checkbox" class="industrycheckbox" value="Lifestyle" id="lifestyle"/><span>Lifestyle</span>
-							</li>
-							<li>
-								<input type="checkbox" class="industrycheckbox" value="Business" id="business"/><span>Business</span>
-							</li>
-							<li>
-								<input type="checkbox" class="industrycheckbox" value="Auto & Vehicles" id="vehicles"/><span>Auto & Vehicles</span>
-							</li>
+                            @foreach($industries as $industry)
+							    <li>
+                                    <input type="checkbox" class="industrycheckbox" value="{{$industry->name}}" id="{{$industry->name}}"/><span>{{$industry->name}}</span>
+                                </li>
+                            @endforeach
 						</ul>
 					</div>
 				</dd>
@@ -107,27 +79,11 @@
 							<li>
 								<input type="checkbox" id="ckbCheckAll-2" /><span>Select all</span>
 							</li>
+                            @foreach($services as $service)
 							<li>
-								<input type="checkbox" class="servicescheckbox" value="Backend" id="backend" /><span>Backend</span>
+								<input type="checkbox" class="servicescheckbox" value="{{$service->name}}" id="backend" /><span>{{$service->name}}</span>
 							</li>
-							<li>
-								<input type="checkbox" class="servicescheckbox" value="Database" id="database" /><span>Database</span>
-							</li>
-							<li>
-								<input type="checkbox" class="servicescheckbox" value="Mobile" id="mobile" /><span>Mobile</span>
-							</li>
-							<li>
-								<input type="checkbox" class="servicescheckbox" value="Strategy" id="strategy" /><span>Strategy</span>
-							</li>
-							<li>
-								<input type="checkbox" class="servicescheckbox" value="Testing" id="testing" /><span>Testing</span>
-							</li>
-							<li>
-								<input type="checkbox" class="servicescheckbox" value="UX/UI" id="ux" /><span>UX/UI</span>
-							</li>
-							<li>
-								<input type="checkbox" class="servicescheckbox" value="Web" id="web" /><span>Web</span>
-							</li>
+							@endforeach
 
 						</ul>
 					</div>
@@ -157,36 +113,11 @@
 							<li>
 								<input type="checkbox" id="ckbCheckAll-3" /><span>Select all</span>
 							</li>
+                            @foreach($technologies as $technology)
 							<li>
-								<input type="checkbox" class="technologycheckbox" value="Android" id="android" /><span>Android</span>
+								<input type="checkbox" class="technologycheckbox" value="{{$technology->name}}" id="{{$technology->name}}" /><span>{{$technology->name}}</span>
 							</li>
-							<li>
-								<input type="checkbox" class="technologycheckbox" value="AngularJs" id="angularjs" /><span>AngularJs</span>
-							</li>
-							<li>
-								<input type="checkbox" class="technologycheckbox" value="iOS" id="ios" /><span>iOS</span>
-							</li>
-							<li>
-								<input type="checkbox" class="technologycheckbox" value="Java" id="java" /><span>Java</span>
-							</li>
-							<li>
-								<input type="checkbox" class="technologycheckbox" value="Lamp" id="lamp" /><span>Lamp</span>
-							</li>
-							<li>
-								<input type="checkbox" class="technologycheckbox" value="PHP" id="php" /><span>Php</span>
-							</li>
-                            <li>
-                                <input type="checkbox" class="technologycheckbox" value="ROR" id="ror" /><span>ROR</span>
-                            </li>
-							<li>
-								<input type="checkbox" class="technologycheckbox" value="SQL Server" id="sqlserver" /><span>SQL Server</span>
-							</li>
-							<li>
-								<input type="checkbox" class="technologycheckbox" value="Xamarin" id="xamarin" /><span>Xamarin</span>
-							</li>
-							<li>
-								<input type="checkbox" class="technologycheckbox" value="AWS" id="aws" /><span>AWS</span>
-							</li>
+						@endforeach
 						</ul>
 					</div>
 				</dd>
@@ -265,14 +196,14 @@
 	var end;
     $(".btn-filtered").on('click', function (e) {
         e.preventDefault();
-        $(".filtered:hidden").slice(0,8).show();
+        $(".filtered:hidden").slice(0,12).show();
         if ($(".filtered:hidden").length == 0) {
             $(".btn-filtered").fadeOut('slow');
         }
 
     });
     $("#load-more-btn").on('click', function (e) {
-        count = count+8;
+        count = count+12;
         e.preventDefault();
         $('.load-more-btn').hide();
         $('.loader').show();
@@ -449,9 +380,9 @@
                                 +'</div>';
                             $('#pro').append(newElement);
                         }
-                        if(projects.length > 8) {
+                        if(projects.length > 12) {
                             $(".filtered").hide();
-                            $(".filtered").slice(0,8).show();
+                            $(".filtered").slice(0,12).show();
                             if ($(".filtered:hidden").length > 0) {
                                 $(".btn-filtered").show();
                                 $(".load-more").show();
@@ -469,6 +400,7 @@
             else
             {
                 $('.portfolio-project').show();
+                $('.filtered').hide();
                 $('.loader').hide();
                 if(end!="true") {
                     $('#load-more-btn').show();

@@ -14,7 +14,6 @@
 
 
 </head>
-</head>
 <body onresize="portDivResize()">
 
 <nav class="navbar navbar-default navbar-fixed-top" id="parent-node">
@@ -55,9 +54,9 @@
 	</div><!-- /.container-fluid -->
 </nav>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/f88ff92415.js"></script>
-
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
 <script type="text/javascript">
 

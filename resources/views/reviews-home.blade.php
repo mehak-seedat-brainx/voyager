@@ -8,46 +8,26 @@
         </div>
         <div class="slide-div">
             <div class="slide-content">
-                <div id="im_1">
-                    <div class="slide-img">
-                        <img src="{{asset('img/home-icon/reviewerimage/peter.webp')}}" class="img-circle">
+                <?php
+                $count = 1;
+                ?>
+                <script>var totalImages = 0;</script>
+                @foreach($reviews as $review)
+                    <div id="{{"im_".(string)$count}}" style="display: none;">
+                        <div class="slide-img">
+                            <img src="{{asset('img/home-icon/reviewerimage/'.$review['photo'])}}" class="img-circle">
+                        </div>
+                        <p> “{{$review['review']}}”
+                        </p>
+                        <span>{{$review['reviewer']}}</span><br>
+                        <span>{{$review['designation']}}</span>
+                        <?php
+                        $count++;
+                        ?>
+                        <script>totalImages++;</script>
                     </div>
-                    <p> “BrainX Technology has been instrumental in delivering quality mobile SDKs in a very short time frame. Their team is responsive at all hours of the day- willing to address new issues and bugs almost instantly. Along with engineering, they have their own testing, design, and QA which makes BrainX a product manager's dream.”
-                    </p>
-                    <span>Peter Johnson</span><br>
-                    <span>Product Manager, Kustomer</span>
-                </div>
-                <div id="im_2">
-                    <div class="slide-img">
-                        <img src="{{asset('img/home-icon/reviewerimage/Gail (Umergency) .jpg')}}" class="img-circle">
-                    </div>
-                    <p>
-                        “BrainX performed exceptionally well. Our project was bogged down due to another agent and they continually stepped up to do their part well and on-time, even supporting the other parts of the development that was not part of their contract. We would absolutely hire them again.”
-                    </p>
-                    <span>Gail Schenbaum</span><br>
-                    <span>CEO Umergency App</span>
-                </div>
-                <div id="im_3">
-                    <div class="slide-img">
-                        <img src="{{asset('img/home-icon/reviewerimage/Fredy.png')}}" class="img-circle">
-                    </div>
-                    <p>
-                        “BrainX is Excellent to work with. Always on time, keeps communication to make sure everything is
-                        done correctly the first time. It has been an excellent opportunity to work with BrainX.”
-                    </p>
-                    <span>Fredy Edison</span><br>
-                    <span>CEO Drive Mouse</span>
-                </div>
-                <div id="im_4">
-                    <div class="slide-img">
-                        <img src="{{asset('img/home-icon/reviewerimage/Keith.jpg')}}" class="img-circle">
-                    </div>
-                    <p>
-                        “The team at BrainX are top-notch professionals. They are highly available, they communicate well, and have technical competency across a variety of disciplines. We will continue to work with BrainX. ”
-                    </p>
-                    <span>Keith R. Thode</span><br>
-                    <span>CEO & Chief Scientist, AdvanceNet Labs</span>
-                </div>
+                @endforeach
+
             </div>
             <div class="testimonial-next-prev">
                 <a   class="prev fa fa-angle-left" id="previous"></a>
@@ -55,7 +35,7 @@
             </div>
         </div>
         <div class="count-div">
-            <span id="slide-num"></span> / 4
+            <span id="slide-num"></span> <?php echo '/'.(string)($count-1) ?>
             <div class="testimonial-next-prev2">
                 <a  class="prev2 fa fa-angle-left" id="left-arrow2"></a>
                 <a  class="prev2 fa fa-angle-right next2" id="right-arrow2"></a>
@@ -67,9 +47,8 @@
     $(document).ready(function() {
         var timer=0;
 
-        $('#im_2').hide();
-        $('#im_3').hide();
-        $('#im_4').hide();
+        $('#im_1').show();
+
         var int = setInterval(nextImage, 5000);
 
         $("#slide-num").text("1");
@@ -93,7 +72,6 @@
             $('#im_' + currentImage).stop(false,true).show("slide", { direction: "right" }, 500);
         }
         var currentImage = 1;
-        var totalImages = 4;
 
         function increaseImage() {
             /* Increase currentImage by 1.

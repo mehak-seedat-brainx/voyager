@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Industry;
+use App\Technology;
+use App\Service;
 class ProjectController extends Controller
 {
     /**
@@ -17,8 +20,10 @@ class ProjectController extends Controller
         $projects = Project::orderBy('id', 'asc')->where('ProSelection', 'True')->get();
         $total_projects = count($projects);
 
-        $projects_shown = $projects->splice(0,8);
-
+        $projects_shown = $projects->splice(0,12);
+        $industries = Industry::all();
+        $technologies = Technology::all();
+        $services = Service::all();
         if($total_projects > count($projects_shown)) {
 
             $end="false";
@@ -26,13 +31,13 @@ class ProjectController extends Controller
         else {
             $end = "true";
         }
-        return view('projects')->with('projects', $projects_shown)->with('end', $end);
+        return view('projects')->with('projects', $projects_shown)->with('end', $end)->with('industries', $industries)->with('technologies',$technologies)->with('services',$services);
     }
     public function loadmore(Request $request) {
         $projects = Project::orderBy('id', 'asc')->where('ProSelection', 'True')->get();
         $total_projects = count($projects);
         $shown = (int)$request['count'];
-        $projects_shown = $projects->splice($shown, $shown);
+        $projects_shown = $projects->splice($shown, 12);
         if($total_projects > ($shown + count($projects_shown))) {
             $end="false";
         }

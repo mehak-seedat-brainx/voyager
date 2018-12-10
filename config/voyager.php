@@ -1,5 +1,4 @@
 <?php
-
 return [
     /*
     |--------------------------------------------------------------------------
@@ -9,7 +8,6 @@ return [
     | Here you can specify voyager user configs
     |
     */
-
     'user' => [
         'add_default_role_on_register' => true,
         'default_role'                 => 'user',
@@ -19,9 +17,8 @@ return [
         // Otherwise `php artisan voyager:install` will fail with class not found error.
         'namespace'                    => null,
         'default_avatar'               => 'users/default.png',
-        'redirect'                     => '/admin',
+        'redirect'                     => '/admins',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Controllers config
@@ -30,12 +27,9 @@ return [
     | Here you can specify voyager controller settings
     |
     */
-
-     'controllers' => [
-         'namespace' => 'TCG\\Voyager\\Http\\Controllers',
-         'namespace' => 'App\\Http\\Controllers\\Voyager',
+    'controllers' => [
+        'namespace' => 'TCG\\Voyager\\Http\\Controllers',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Models config
@@ -46,11 +40,9 @@ return [
     | namespace will be used.
     |
     */
-
     'models' => [
         //'namespace' => 'App\\',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Path to the Voyager Assets
@@ -59,9 +51,7 @@ return [
     | Here you can specify the location of the voyager assets path
     |
     */
-
     'assets_path' => '/vendor/tcg/voyager/assets',
-
     /*
     |--------------------------------------------------------------------------
     | Storage Config
@@ -70,11 +60,9 @@ return [
     | Here you can specify attributes related to your application file system
     |
     */
-
     'storage' => [
         'disk' => 'public',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Media Manager
@@ -83,9 +71,7 @@ return [
     | Here you can specify if media manager can show hidden files like(.gitignore)
     |
     */
-
     'hidden_files' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Database Config
@@ -94,13 +80,11 @@ return [
     | Here you can specify voyager database settings
     |
     */
-
     'database' => [
         'tables' => [
             'hidden' => ['migrations', 'data_rows', 'data_types', 'menu_items', 'password_resets', 'permission_role', 'settings'],
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Multilingual configuration
@@ -110,23 +94,19 @@ return [
     | multilingual and what locales are enabled.
     |
     */
-
     'multilingual' => [
         /*
          * Set whether or not the multilingual is supported by the BREAD input.
          */
         'enabled' => false,
-
         /*
          * Set whether or not the admin layout default is RTL.
          */
         'rtl' => false,
-
         /*
          * Select default language
          */
         'default' => 'en',
-
         /*
          * Select languages that are supported.
          */
@@ -135,7 +115,6 @@ return [
             //'pt',
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Dashboard config
@@ -144,7 +123,6 @@ return [
     | Here you can modify some aspects of your dashboard
     |
     */
-
     'dashboard' => [
         // Add custom list items to navbar's dropdown
         'navbar_items' => [
@@ -163,13 +141,9 @@ return [
                 'icon_class' => 'voyager-power',
             ],
         ],
-
         'widgets' => [
-
         ],
-
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Automatic Procedures
@@ -178,21 +152,16 @@ return [
     | When a change happens on Voyager, we can automate some routines.
     |
     */
-
     'bread' => [
         // When a BREAD is added, create the Menu item using the BREAD properties.
         'add_menu_item' => true,
-
         // which menu add item to
         'default_menu' => 'admin',
-
         // When a BREAD is added, create the related Permission.
         'add_permission' => true,
-
         // which role add premissions to
         'default_role' => 'admin',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | UI Generic Config
@@ -201,27 +170,21 @@ return [
     | Here you change some of the Voyager UI settings.
     |
     */
-
     'primary_color' => '#22A7F0',
-
     'show_dev_tips' => true, // Show development tip "How To Use:" in Menu and Settings
-
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
         //'css/custom.css',
     ],
-
     'additional_js' => [
         //'js/custom.js',
     ],
-
     'googlemaps' => [
-         'key'    => env('GOOGLE_MAPS_KEY', ''),
-         'center' => [
-             'lat' => env('GOOGLE_MAPS_DEFAULT_CENTER_LAT', '32.715738'),
-             'lng' => env('GOOGLE_MAPS_DEFAULT_CENTER_LNG', '-117.161084'),
-         ],
-         'zoom' => env('GOOGLE_MAPS_DEFAULT_ZOOM', 11),
-     ],
-
+        'key'    => env('GOOGLE_MAPS_KEY', ''),
+        'center' => [
+            'lat' => env('GOOGLE_MAPS_DEFAULT_CENTER_LAT', '32.715738'),
+            'lng' => env('GOOGLE_MAPS_DEFAULT_CENTER_LNG', '-117.161084'),
+        ],
+        'zoom' => env('GOOGLE_MAPS_DEFAULT_ZOOM', 11),
+    ],
 ];

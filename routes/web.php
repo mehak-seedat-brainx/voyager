@@ -32,7 +32,6 @@ Route::get('/terms', 'PagesController@terms');
 Route::get('projects/{id}', 'ProjectController@show');
 
 
-Route::resource('posts', 'PostsController');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -40,3 +39,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admins'], function () {
     Voyager::routes();
 });
+Route::get('admins/bread/{id}', 'PagesController@bread');

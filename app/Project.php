@@ -21,4 +21,13 @@ class Project extends Model
             ]
         ];
     }
+    public function ProIndustry(){
+        return $this->belongsTo(Industry::class);
+    }
+    public function ProServices(){
+        return $this->belongsToMany(Service::class);
+    }
+    public function ProTechnology(){
+        return $this->belongsToMany(Technology::class);
+    }
 }

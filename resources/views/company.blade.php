@@ -58,27 +58,30 @@ $baseUrl = "https://www.brainxtech.com/";
 			</div>
 		</div> -->
 		<!-- section 2 -->
+		@foreach($jobs as $job)
 		<div class="info-section section-p-common career-section-p">
+
 			<div class="top-text  top-heading-common">
-				<h4>LAHORE | FULL-TIME</h4>
+				<h4>{{strtoupper($job->city)}} | {{strtoupper($job->type)}}</h4>
 			</div>
 			<div class="bold-text main-heading-common">
-				<h1>Software Engineer</h1>
+				<h1>{{$job->title}}</h1>
 			</div>
 			<p>
-				BrainX Technologies is seeking a software engineer to work on a variety of exciting projects in Lahore. The position is responsible for and involved in all stages of our agile software development lifecycle. <br/><br/>
-				<b>Available Positions: 2</b>
+				{{$job->description}} <br/><br/>
+				<b>Available Positions: {{$job->positions}}</b>
 			</p>
 			<div class="row">
 				<div class="div-btn">
 					<div class="explore-btn-a">
-						<a href="http://bit.ly/brainxhiringQ12018" target="_blank">
+						<a href="{{$job->form}}" target="_blank">
 							<div class="btn-style">Apply</div>
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		@endforeach
 		<!-- background image section -->
 		<div class="benefit-main-div">
 			<div class="top-text top-heading-common">
