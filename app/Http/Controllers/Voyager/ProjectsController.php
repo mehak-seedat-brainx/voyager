@@ -69,13 +69,20 @@ class ProjectsController  extends VoyagerBaseController
 
         }
         $project = new Project;
+        $project->ProTags ="";
         $project->ProSelection = $request->input('ProSelection');
         $project->ProBgcolor = $request->input('ProBgcolor');
         $project->ProTittle = $request->input('ProTittle');
         $project->ProIndustry = $request->input('ProIndustry');
-        $project->ProServices = implode(" ", $request->input('ProServices'));
-        $project->ProTechnology = implode(" ", $request->input('ProTechnology'));
-        $project->ProTags =  implode(",", $request->input('ProServices')) .  "," . implode(",", $request->input('ProTechnology'));
+        if($request->input('ProServices')) {
+            $project->ProServices = implode(" ", $request->input('ProServices'));
+            $project->ProTags =  implode(",", $request->input('ProServices'));
+        }
+       if($request->input('ProTechnology')) {
+           $project->ProTechnology = implode(" ", $request->input('ProTechnology'));
+           $project->ProTags = $project->ProTags . "," . implode(",", $request->input('ProTechnology'));
+       }
+
         if(isset($proimage)) {
             $project->ProImage = $proimage;
         }

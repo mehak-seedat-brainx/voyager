@@ -17,21 +17,21 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderBy('id', 'asc')->where('ProSelection', 'True')->get();
-        $total_projects = count($projects);
+        $all_projects = Project::orderBy('id', 'asc')->where('ProSelection', 'True')->get();
+        $total_projects = count($all_projects);
 
-        $projects_shown = $projects->splice(0,12);
+        $projects = $all_projects->splice(0,12);
         $industries = Industry::all();
         $technologies = Technology::all();
         $services = Service::all();
-        if($total_projects > count($projects_shown)) {
+        if($total_projects > count($projects)) {
 
             $end="false";
         }
         else {
             $end = "true";
         }
-        return view('projects')->with('projects', $projects_shown)->with('end', $end)->with('industries', $industries)->with('technologies',$technologies)->with('services',$services);
+        return view('projects', compact('projects', 'end', 'industries', 'technologies', 'services'));
     }
     public function loadmore(Request $request) {
         $projects = Project::orderBy('id', 'asc')->where('ProSelection', 'True')->get();
