@@ -1,5 +1,14 @@
 @include("header")
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131076473-1"></script>
+	<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-131076473-1');
+	</script>
 	<title>Contact Us | BrainX Technologies</title>
 </head>
 <div class="contact-us-main">

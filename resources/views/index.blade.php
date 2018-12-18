@@ -3,6 +3,16 @@
 $baseUrl = "https://www.brainxtech.com/";
 ?>
 <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131076473-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-131076473-1');
+    </script>
     <title>Software Solutions | BrainX Technologies</title>
     <meta name="author" content="BrainX Technologies" />
     <meta name="description" content="We are a Pakistan based software development firm that works with startups, SMBs & enterprises to craft disruptive digital products & strategies that solve business problems & drive measurable results.">
