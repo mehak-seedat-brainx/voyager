@@ -59,11 +59,14 @@
                                     <legend class="text-{{isset($row->details->legend->align) ? $row->details->legend->align : 'center'}}" style="background-color: {{isset($row->details->legend->bgcolor) ? $row->details->legend->bgcolor : '#f0f0f0'}};padding: 5px;">{{$row->details->legend->text}}</legend>
                                 @endif
                                 @if($row->type == "image")
+
                                     @if((!is_null($dataTypeContent->getKey())) && isset($dataTypeContent->{$row->field}))
+
                                     <img src="@if( !filter_var($dataTypeContent->{$row->field}, FILTER_VALIDATE_URL)){{asset('img/home-icon/'. $dataTypeContent->{$row->field})  }}@else{{ $dataTypeContent->{$row->field} }}@endif"
-                                         style="max-width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
+                                         style="max-width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px; margin-left: 15px;">
                                     @endif
-                                        <input @if($row->required == 1 && !isset($dataTypeContent->{$row->field})) required @endif type="file" name="{{ $row->field }}" accept="image/*">
+
+                                        <input   @if($row->required == 1 && !isset($dataTypeContent->{$row->field})) required @endif type="file" name="{{ $row->field }}" accept="image/*" style="margin-left: 15px;">
 
                                 @elseif (isset($row->details->formfields_custom))
                                     @include('voyager::formfields.custom.' . $row->details->formfields_custom)

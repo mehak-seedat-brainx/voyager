@@ -43,7 +43,9 @@ class ClientLogosController extends VoyagerBaseController
         }
         $client_logo = ClientLogo::find($id);
         $client_logo->ShowHomePage = $request->input('ShowHomePage');
-        $client_logo->logo = $logo;
+        if(isset($logo)) {
+            $client_logo->logo = $logo;
+        }
         $client_logo->save();
         return redirect('/admins/client-logo');
     }

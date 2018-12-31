@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class WebsiteMenuItem extends Model
 {
-
-    //
+    public $timestamps = false;
 }

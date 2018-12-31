@@ -874,11 +874,11 @@
 </div>
 
 <!-- contact us portion -->
-@include("contact-us-form");
+@include("contact-us-form")
 
 <!-- Footer -->
 
-@include("footer");
+@include("footer")
 
 
 <script>

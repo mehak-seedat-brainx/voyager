@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Industry;
 use App\Technology;
 use App\Service;
+use TCG\Voyager\Models\Page;
 class ProjectController extends Controller
 {
     /**
@@ -119,6 +120,7 @@ class ProjectController extends Controller
     {
         $project = Project::where('slug', $slug)->first();
         $projects=Project::orderBy('id','asc')->get();
+
         if($project) {
             return view("projects-detail")->with('data', $project)->with('dataarray', $projects);
         }

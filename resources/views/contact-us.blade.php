@@ -9,6 +9,7 @@
 
         gtag('config', 'UA-131076473-1');
 	</script>
+
 	<title>Contact Us | BrainX Technologies</title>
 </head>
 <div class="contact-us-main">

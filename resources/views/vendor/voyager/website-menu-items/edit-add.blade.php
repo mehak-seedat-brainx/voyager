@@ -22,7 +22,6 @@
                 <div class="panel panel-bordered">
                     <!-- form start -->
                     <form role="form"
-                          class="form-edit-add"
                           action="@if(!is_null($dataTypeContent->getKey())){{ route('voyager.'.$dataType->slug.'.update', $dataTypeContent->getKey()) }}@else{{ route('voyager.'.$dataType->slug.'.store') }}@endif"
                           method="POST" enctype="multipart/form-data">
                         <!-- PUT Method if we are editing -->
@@ -51,32 +50,32 @@
                             @endphp
 
                             @foreach($dataTypeRows as $row)
-
+                            <!-- GET THE DISPLAY OPTIONS -->
                                 @php
                                     $display_options = isset($row->details->display) ? $row->details->display : NULL;
                                 @endphp
                                 @if (isset($row->details->legend) && isset($row->details->legend->text))
                                     <legend class="text-{{isset($row->details->legend->align) ? $row->details->legend->align : 'center'}}" style="background-color: {{isset($row->details->legend->bgcolor) ? $row->details->legend->bgcolor : '#f0f0f0'}};padding: 5px;">{{$row->details->legend->text}}</legend>
                                 @endif
-                                    @if($row->type == "image")
-                                        <div class="form-group">
-                                        @if((!is_null($dataTypeContent->getKey())) && isset($dataTypeContent->{$row->field}))
-                                            <img src="@if( !filter_var($dataTypeContent->{$row->field}, FILTER_VALIDATE_URL)){{asset('img/icon/port project/'. $dataTypeContent->{$row->field})  }}@else{{ $dataTypeContent->{$row->field} }}@endif"
-                                                 style="max-width:200px; height:auto; clear:both; display:block; margin-left:16px; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
-                                        @endif
-                                        <input style="margin-left: 15px;" @if($row->required == 1 && !isset($dataTypeContent->{$row->field})) required @endif type="file" name="{{ $row->field }}" accept="image/*">
-                                        </div>
-                                    @elseif (isset($row->details->formfields_custom))
+                            @if($row->field == "menu")
+                                    <div class="form-group @if($row->type == 'hidden') hidden @endif col-md-{{ isset($display_options->width) ? $display_options->width : 12 }}" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
+                                        <label for="menu">Menu</label>
 
-                                    {{$row->details->formfields_custom}}
+                                        <select class="form-control select2 text-center" name="{{ $row->field }}[]" multiple required>
+                                        <option value="header" @if(!is_null($dataTypeContent->getKey()) && !(stripos( $dataTypeContent->menu, "header") === false)) selected @endif>Header </option>
+                                        <option value="footer" @if(!is_null($dataTypeContent->getKey()) && !(stripos($dataTypeContent->menu, "footer") === false)) selected @endif>Footer</option>
+                                        <option value="footer_sub" @if(!is_null($dataTypeContent->getKey()) && !(stripos( $dataTypeContent->menu, "footer_sub") === false)) selected @endif>Footer Sub Menu</option>
+                                    </select>
+                                </div>
+                                @elseif (isset($row->details->formfields_custom))
                                     @include('voyager::formfields.custom.' . $row->details->formfields_custom)
-
                                 @else
                                     <div class="form-group @if($row->type == 'hidden') hidden @endif col-md-{{ isset($display_options->width) ? $display_options->width : 12 }}" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
                                         {{ $row->slugify }}
                                         <label for="name">{{ $row->display_name }}</label>
                                         @include('voyager::multilingual.input-hidden-bread-edit-add')
                                         @if($row->type == 'relationship')
+                                            @include('voyager::formfields.relationship', ['options' => $row->details])
                                         @else
                                             {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
                                         @endif
@@ -140,7 +139,6 @@
 
         $('document').ready(function () {
             $('.toggleswitch').bootstrapToggle();
-            $('.services').select2();
 
             //Init datepicker for date fields if data-datepicker attribute defined
             //or if browser does not handle date inputs

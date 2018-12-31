@@ -172,6 +172,7 @@ $baseUrl = "https://www.brainxtech.com/";
 <script type="text/javascript">
     $(document).ready(function()
     {
+
         // That is Defaut For First Time
         //career
         $('#about-div').css("background-color", "white");
@@ -182,8 +183,9 @@ $baseUrl = "https://www.brainxtech.com/";
 
         // that are in click events
         //career
-        $("#career-div").click(function(){
+        $("#career-div").click(function(e){
             //career
+            history.replaceState('data to be passed', 'Career', '/company#career');
             $('#career-div').css("background-color", "white");
             $('#career-div a').css("color", "#455963");
             $('#career-image').attr('src', "{{URL::asset('img/icon/company/Company_Career.svg')}}");
@@ -197,6 +199,8 @@ $baseUrl = "https://www.brainxtech.com/";
         //about
         $("#about-div").click(function(){
             //about
+
+            history.replaceState('', 'About', '/company#about');
             $('#about-div').css("background-color", "white");
             $('#about-div a').css("color", "#455963");
             $('#career-image').attr('src', "{{URL::asset('img/icon/company/Company_About.svg')}}");
@@ -207,6 +211,10 @@ $baseUrl = "https://www.brainxtech.com/";
             $('.career-content').hide();
         });
 
+        if(window.location.hash == "#career") {
+            $("#career-div").click();
+
+        }
 
         var images = [];
         function preload() {

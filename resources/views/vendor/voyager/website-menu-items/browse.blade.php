@@ -15,7 +15,13 @@
         @can('delete', app($dataType->model_name))
             @include('voyager::partials.bulk-delete')
         @endcan
-
+        @can('edit', app($dataType->model_name))
+            @if(isset($dataType->order_column) && isset($dataType->order_display_column))
+                <a href="{{ route('voyager.'.$dataType->slug.'.order') }}" class="btn btn-primary">
+                    <i class="voyager-list"></i> <span>{{ __('voyager::bread.order') }}</span>
+                </a>
+            @endif
+        @endcan
         @include('voyager::multilingual.language-selector')
     </div>
 @stop
@@ -50,22 +56,17 @@
                                 </div>
                             </form>
                         @endif
-                        <?php
-                       $projects = \App\Project::all();
-                       ?>
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-hover">
                                 <thead>
                                 <tr>
-
                                     @can('delete',app($dataType->model_name))
-                                        <th class="text-center">
+                                        <th>
                                             <input type="checkbox" class="select_all">
                                         </th>
                                     @endcan
                                     @foreach($dataType->browseRows as $row)
-
-                                        <th class="text-center">
+                                        <th>
                                             @if ($isServerSide)
                                                 <a href="{{ $row->sortByUrl() }}">
                                                     @endif
@@ -82,40 +83,24 @@
                                             @endif
                                         </th>
                                     @endforeach
-                                        <th class="actions text-center">{{ __('voyager::generic.actions') }}</th>
-
-
+                                    <th class="actions text-right">{{ __('voyager::generic.actions') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($dataTypeContent as $data)
-                                    <tr class="text-center">
-
+                                    <tr>
                                         @can('delete',app($dataType->model_name))
                                             <td>
                                                 <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
                                             </td>
                                         @endcan
-
-                                        <?php
-                                            $project = $projects->where('Id', $data->Id)->first();
-                                            ?>
                                         @foreach($dataType->browseRows as $row)
 
                                             <td>
-                                                @if($row->field=="ProIndustry")
-                                                    {{ucwords($project->ProIndustry)}}
-                                                    @elseif($row->field=="ProTechnology")
-                                                        {{ucwords($project->ProTechnology)}}
-                                                @elseif($row->field=="ProServices")
-                                                    {{ucwords($project->ProServices)}}
-
-                                                @elseif($row->type == 'image')
-                                                    @if(isset($data->{$row->field}))
-                                                        <img src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{asset('img/icon/port project/'. $data->{$row->field})  }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
-                                                    @else
-                                                        <p> No image</p>
-                                                    @endif
+                                                @if($row->type == 'image')
+                                                    <img src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
+                                               @elseif($row->field == "menu")
+                                                    {!!  str_replace([',', 'header', 'footer_main','footer_sub'], [', ', 'Header','Footer', 'Footer Sub Menu'], $data->menu) !!}
                                                 @elseif($row->type == 'relationship')
                                                     @include('voyager::formfields.relationship', ['view' => 'browse','options' => $row->details])
                                                 @elseif($row->type == 'select_multiple')
@@ -150,7 +135,7 @@
                                                     @endif
 
                                                 @elseif($row->type == 'select_dropdown' && $data->{$row->field . '_page_slug'})
-                                                     {{$data->{$row->field} }}
+                                                    <a href="{{ $data->{$row->field . '_page_slug'} }}">{{ $data->{$row->field} }}</a>
                                                 @elseif($row->type == 'date' || $row->type == 'timestamp')
                                                     {{ property_exists($row->details, 'format') ? \Carbon\Carbon::parse($data->{$row->field})->formatLocalized($row->details->format) : $data->{$row->field} }}
                                                 @elseif($row->type == 'checkbox')
@@ -167,7 +152,7 @@
                                                     <span class="badge badge-lg" style="background-color: {{ $data->{$row->field} }}">{{ $data->{$row->field} }}</span>
                                                 @elseif($row->type == 'text')
                                                     @include('voyager::multilingual.input-hidden-bread-browse')
-                                                    {{ mb_strlen( $data->{$row->field} ) > 50 ? mb_substr($data->{$row->field}, 0, 50) . ' ...' : $data->{$row->field} }}
+                                                    <div class="readmore">{{ mb_strlen( $data->{$row->field} ) > 200 ? mb_substr($data->{$row->field}, 0, 200) . ' ...' : $data->{$row->field} }}</div>
                                                 @elseif($row->type == 'text_area')
                                                     @include('voyager::multilingual.input-hidden-bread-browse')
                                                     <div class="readmore">{{ mb_strlen( $data->{$row->field} ) > 200 ? mb_substr($data->{$row->field}, 0, 200) . ' ...' : $data->{$row->field} }}</div>
@@ -195,7 +180,7 @@
                                                     @if($images)
                                                         @php $images = array_slice($images, 0, 3); @endphp
                                                         @foreach($images as $image)
-                                                            <img src="@if( !filter_var($image, FILTER_VALIDATE_URL)){{ asset('img/icon/port project/'. $data->{$row->field})  }} }}@else{{ $image }}@endif" style="width:50px">
+                                                            <img src="@if( !filter_var($image, FILTER_VALIDATE_URL)){{ Voyager::image( $image ) }}@else{{ $image }}@endif" style="width:50px">
                                                         @endforeach
                                                     @endif
                                                 @else
@@ -204,12 +189,11 @@
                                                 @endif
                                             </td>
                                         @endforeach
-                                            <td class="no-sort no-click text-center" id="bread-actions">
-                                                @foreach(Voyager::actions() as $action)
-                                                    @include('voyager::bread.partials.actions', ['action' => $action])
-                                                @endforeach
-                                            </td>
-
+                                        <td class="no-sort no-click" id="bread-actions">
+                                            @foreach(Voyager::actions() as $action)
+                                                @include('voyager::bread.partials.actions', ['action' => $action])
+                                            @endforeach
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

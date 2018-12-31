@@ -11,11 +11,11 @@ class ClientReviewController extends VoyagerBaseController
         if ($request->hasFile('photo')) {
             $complete_filename = $request->file('photo')->getClientOriginalName();
             $filename = pathinfo($complete_filename, PATHINFO_FILENAME);
-            //$extension = $request->file('photo')->getClientOriginalExtension();
-            //$logo = $filename . '.' . $extension;
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $logo = $filename . '.' . $extension;
             //Image upload
             $file = $request->file('photo');
-            $file->move(public_path('/img/home-icon/reviewerimage/'), $filename);
+            $file->move(public_path('/img/home-icon/reviewerimage/'), $logo);
 
         }
         $client_review = new ClientReview;
@@ -23,7 +23,29 @@ class ClientReviewController extends VoyagerBaseController
         $client_review->reviewer = $request->input('reviewer');
         $client_review->designation = $request->input('designation');
         $client_review->ShowHomePage = $request->input('ShowHomePage');
-        $client_review->photo = $filename;
+        $client_review->photo = $logo;
+        $client_review->save();
+        return redirect('/admins/client-review');
+    }
+    public function update(Request $request, $id) {
+        if ($request->hasFile('photo')) {
+            $complete_filename = $request->file('photo')->getClientOriginalName();
+            $filename = pathinfo($complete_filename, PATHINFO_FILENAME);
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $logo = $filename . '.' . $extension;
+            //Image upload
+            $file = $request->file('photo');
+            $file->move(public_path('/img/home-icon/reviewerimage/'), $logo);
+
+        }
+        $client_review = ClientReview::find($id);
+        $client_review->review = $request->input('review');
+        $client_review->reviewer = $request->input('reviewer');
+        $client_review->designation = $request->input('designation');
+        $client_review->ShowHomePage = $request->input('ShowHomePage');
+        if(isset($logo)) {
+            $client_review->photo = $logo;
+        }
         $client_review->save();
         return redirect('/admins/client-review');
     }

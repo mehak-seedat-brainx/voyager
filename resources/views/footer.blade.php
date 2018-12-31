@@ -7,12 +7,11 @@
 			<div class="col-sm-7 col-xs-12 footer-9col">
 				<div class="footer-nav">
 					<ul class="footer-ul">
-						<li class="footer-li"><a href="/projects">Projects</a></li>
-						<li class="footer-li"><a href="/services"> Services</a></li>
-						<li class="footer-li"> <a href="/solutions">Solutions </a></li>
-						<li class="footer-li"><a href="/company">Company</a></li>
-						<li class="footer-li" style="display: none;"><a href="blog.php">Blog</a></li>
-						<li class="footer-li" style="display: none;"><a href="approach.php">Approach</a></li>
+						@foreach($menu as $item)
+							@if(!(stripos( $item->menu, "footer_main") === false))
+								<li class="footer-li"><a href="{{$item->url}}">{{$item->name}}</a></li>
+							@endif
+						@endforeach
 					</ul>
 				</div>
 				<hr class="horizental-bar">
@@ -66,8 +65,11 @@
 				<div class="footer-bottom-div">
 
 					<ul class="bottom-ul">
-						<li class="bottom-li"><a href="/policy">Privacy Policy</a></li>
-						<li class="bottom-li" style="margin: 0px;"><a href="/terms">Terms of Service</a></li>
+						@foreach($menu as $item)
+							@if(!(stripos( $item->menu, "footer_sub") === false))
+								<li class="bottom-li"><a href="{{$item->url}}">{{$item->name}}</a></li>
+							@endif
+						@endforeach
 					</ul>
 					<div class="copy-right-div">
 						<span>Copyright © 2017 BrainX Technologies. All rights reserved. </span>

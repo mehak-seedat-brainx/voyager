@@ -980,12 +980,12 @@ $baseUrl = "https://www.brainxtech.com/";
 	</div>
 	<!-- contact us portion -->
 
-	@include("contact-us-form");
+	@include("contact-us-form")
 
 
 	<!-- Footer -->
 
-	@include("footer");
+	@include("footer")
 
 
 	<script type="text/javascript">
@@ -1030,7 +1030,7 @@ $baseUrl = "https://www.brainxtech.com/";
 <script type="text/javascript">
 	$(document).ready(function()
 	{
-		startupclick();
+
     	//stratup
     	$("#startup-div").click(function(){
     		startupclick();
@@ -1045,6 +1045,17 @@ $baseUrl = "https://www.brainxtech.com/";
     	$("#enterprise-div").click(function(){
     		enterpriseclick();
     	});
+        if(window.location.hash == "#midsize") {
+            $("#midsize-div").click();
+
+        }
+        else if(window.location.hash == "#enterprise") {
+            $("#enterprise-div").click();
+
+        }
+        else {
+            $("#startup-div").click();
+		}
 
 
     	preload("{{asset('img/icon/StartUp/solution_icons_Startup.svg')}}","{{asset('img/icon/StartUp/startup-section1.png')}}","{{asset('img/icon/StartUp/startup-section2.png')}}","{{asset('img/icon/StartUp/startup-section3.png')}}","{{asset('img/icon/StartUp/startup-section4.png')}}","{{asset('img/icon/Midsize/solution_icons_Midsize.svg')}}","{{asset('img/icon/Midsize/midsize-section1.png')}}","{{asset('img/icon/Midsize/midsize-section1.png')}}","{{asset('img/icon/Midsize/midsize-section3.png')}}","{{asset('img/icon/Midsize/midsize-section4.png')}}","{{asset('img/icon/Enterprise/solution_icons_Enterprise.svg')}}","{{asset('img/icon/Enterprise/enterprise-section1.png')}}","{{asset('img/icon/Enterprise/enterprise-section2.png')}}","{{asset('img/icon/Enterprise/enterprise-section3.png')}}","{{asset('img/icon/Enterprise/enterprise-section4.png')}}");
@@ -1060,12 +1071,11 @@ $baseUrl = "https://www.brainxtech.com/";
 
     });
 
-
-
 	function startupclick()
 	{
 		//midsize
-		$('#midsize-div').css("background-color", "inherit");
+        history.replaceState('', 'startup', '/solutions#startup');
+        $('#midsize-div').css("background-color", "inherit");
 		$('#midsize-div-a').css("color", "inherit");
 		$('.midsize-content').hide();
     	// Enterprise
@@ -1102,7 +1112,8 @@ $baseUrl = "https://www.brainxtech.com/";
 	function midsizeclick()
 	{
 		//midesize
-		$('#career-image, .solution-top, .solution-banner').show();
+        history.replaceState('', 'midsize', '/solutions#midsize');
+        $('#career-image, .solution-top, .solution-banner').show();
 		$('.solution-top').css("background-color", "#7458D1");
 		$('#career-image').attr('src', "{{URL::asset('img/icon/Midsize/solution_icons_Midsize.svg')}}");
 		$('#midsize-div').css("background-color", "white");
@@ -1128,9 +1139,12 @@ $baseUrl = "https://www.brainxtech.com/";
   		$('#startup-div-a').css("color", "inherit");
   		$('.startup-content').hide();
         // for scrollto
-        $('html, body').animate({
-        	scrollTop: 60
-        }, 800, function(){});
+		if(window.location.hash == "") {
+            $('html, body').animate({
+                scrollTop: 60
+            }, 800, function () {
+            });
+        }
         //for section close
         $(".btn-solution, .btn-solution2, .btn-solution3, .btn-solution4").show();
         $(".solution-hidden-main, .solution-hidden-main2, .solution-hidden-main3, .solution-hidden-main4").slideUp("slow", function() {});
@@ -1138,6 +1152,7 @@ $baseUrl = "https://www.brainxtech.com/";
     function enterpriseclick()
     {
 		//midsize
+        history.replaceState('', 'enterprise', '/solutions#enterprise');
 		$('#midsize-div').css("background-color", "inherit");
 		$('#midsize-div-a').css("color", "inherit");
 		$('.midsize-content').hide();
@@ -1164,12 +1179,18 @@ $baseUrl = "https://www.brainxtech.com/";
 		$('#startup-div-a').css("color", "inherit");
 		$('.startup-content').hide();
        // for scrollto
-       $('html, body').animate({
-       	scrollTop: 60
-       }, 800, function(){});
+        if(window.location.hash == "") {
+            $('html, body').animate({
+                scrollTop: 60
+            }, 800, function () {
+            });
+        }
        //for section close
        $(".btn-solution, .btn-solution2, .btn-solution3, .btn-solution4").show();
        $(".solution-hidden-main, .solution-hidden-main2, .solution-hidden-main3, .solution-hidden-main4").slideUp("slow", function() {});
+
    }
+
+
 
 </script>

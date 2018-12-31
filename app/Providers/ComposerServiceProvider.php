@@ -3,27 +3,25 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
-use App\WebsiteMenuItem;
 
-class AppServiceProvider extends ServiceProvider
+class ComposerServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
     public function boot()
     {
-        $menu = WebsiteMenuItem::all();
-        View::share('menu', $menu);
-
+        View::composer(
+            ['header', 'footer'], 'App\Http\ViewComposers\MenuComposer'
+        );
 
     }
 
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */

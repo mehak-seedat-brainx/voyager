@@ -9,6 +9,14 @@
 
         gtag('config', 'UA-131076473-1');
     </script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-131076473-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 	<title>Projects | BrainX Technologies</title>
 </head>
 
@@ -34,12 +42,12 @@
 		</div>
 		<div class="col-md-3 col-md-three">
 			<span class="lable-span">Industry</span>
-			<dl class="dropdown"> 
+			<dl class="dropdown">
 
 				<dt id="select-option1">
 					<a>
-						<span class="hida">Select Industry</span>    
-						<p class="multiSel"></p>  
+						<span class="hida">Select Industry</span>
+						<p class="multiSel"></p>
 					</a>
 					<div class="icon-top" id="icon-top1">
 
@@ -67,12 +75,12 @@
 		</div>
 		<div class="col-md-3 col-md-three">
 			<span class="lable-span">Service</span>
-			<dl class="dropdown-2"> 
+			<dl class="dropdown-2">
 
 				<dt id="select-option2">
 					<a >
 						<span class="hida-2">Select Service</span>
-						<p class="multiSel-2"></p>  
+						<p class="multiSel-2"></p>
 					</a>
 					<div class="icon-top" id="icon-top2">
 
@@ -101,12 +109,12 @@
 		</div>
 		<div class="col-md-3 col-md-three">
 			<span class="lable-span">Technology</span>
-			<dl class="dropdown-3"> 
+			<dl class="dropdown-3">
 
 				<dt id="select-option3">
 					<a >
-						<span class="hida-3">Select Technology</span>    
-						<p class="multiSel-3"></p>  
+						<span class="hida-3">Select Technology</span>
+						<p class="multiSel-3"></p>
 					</a>
 					<div class="icon-top" id="icon-top3">
 
@@ -133,7 +141,7 @@
 			</dl>
 		</div>
 	</div>
-	
+
 	<!-- portfolio middle portion -->
 
 	<div id="projj" class="main-project-div">
@@ -155,7 +163,7 @@
 							<h4><?php echo $object["ProIndustry"]; ?></h4>
 							<h1> <?php echo $object["ProTittle"]; ?></h1>
 						</div>
-						<a href="{{'projects/'.$object["slug"]}}">
+						<a class="project-link" id="{{$object['ProTittle']}}" href="{{'projects/'.$object["slug"]}}">
 							<div class="project-btn get-estimate">
 								LEARN MORE
 							</div>
@@ -170,37 +178,37 @@
 			?>
 		</div>
 
-		
+
 	</div>
 	@if($end == "false")
 		<div class="row">
 			<div class="container text-center load-more">
-				<button id="load-more-btn" class="load-more-btn">Load More</button>
+				<button id="load-more-btn" class="load-more-btn text-center">Load More</button>
                 <button id="load-filtered" class="load-more-btn btn-filtered" style="display: none;">Load More</button>
                 <img class="loader" src="{{asset('img/icon/project-detail/giphy.gif')}}" style="height:150px; display:none;">
 			</div>
 		</div>
 @endif
+</div>
 	<!-- start work with us And Contact us form -->
-	<div class="port-contact-div">
-
-		@include("contact-us-form");
-
-	</div>
-
-</div>
 
 
-<!-- footer -->
-<div class="port-footer-div">
 
-	@include("footer");
+    @include("contact-us-form")
+	@include("footer")
 
-</div>
+
+
 
 
 
 <script>
+
+    $(".project-link").on('click', function (e) {
+
+        var name=$(this).attr('id');
+        tracker.send('event', 'projects', 'click', name);
+    });
 	var count=0;
 	var end;
     $(".btn-filtered").on('click', function (e) {
@@ -258,7 +266,7 @@
 							+'<a href="/projects/'+project['slug']+'">'
 							+'<div class="project-btn get-estimate"> LEARN MORE </div>'
 							+'</a>'
-							+'<div class="project-img">'+ '<img src="/img/icon/port project/'+project['ProImage']+'">'+'</div>'
+							+'<div class="project-img" >'+ '<img src="/img/icon/port project/'+project['ProImage']+'">'+'</div>'
 							+'</div>';
 					$('#pro').append(newElement);
 				}
@@ -306,7 +314,12 @@
             $('.mutliSelect input[type="checkbox"], .mutliSelect-2 input[type="checkbox"], .mutliSelect-3 input[type="checkbox"]').prop("checked", false);
             $('.multiSel, .multiSel-2, .multiSel-3').html("");
             $('#select-option1 span, #select-option2 span, #select-option3 span').show();
+            $('.filtered').remove();
             $('.portfolio-project').show();
+            if(end!="true") {
+                $('#load-more-btn').show();
+            }
+
         });
 
 // for dropdowns filter

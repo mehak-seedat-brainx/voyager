@@ -20,6 +20,9 @@ body {
 .icon-bar {
     background-color: #243251 !important;
 }
+.blog-text p>img{
+    display:none;
+}
 .navbar-toggle {
     margin-right: 5px !important;
 }

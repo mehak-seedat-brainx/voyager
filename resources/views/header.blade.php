@@ -2,6 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="//www.google-analytics.com/analytics.js"></script>
+	<script>
+        tracker = ga.create('UA-131076473-1', 'auto');
+        tracker.send('pageview');
+	</script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -40,13 +45,12 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div align="center" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="navbar-li"><a href="/projects" class="navbar-li-a">Projects</a></li>
+				<li class="navbar-li" id="projects"><a href="/projects" class="navbar-li-a">Projects</a></li>
 
-				<li class="navbar-li list-inline"><a href="/services" class="navbar-li-a">Services</a></li>
-				<li class="navbar-li"><a href="/solutions" class="navbar-li-a">Solutions</a></li>
-				<li class="navbar-li"><a href="/company" class="navbar-li-a">Company</a></li>
-				<li class="navbar-li" style="display: none;"><a href="blog.php" class="navbar-li-a">Blog</a></li>
-				<li class="navbar-li" style="display: none;"><a href="approach.php" class="navbar-li-a">Approach</a></li>
+				<li id="services" class="navbar-li list-inline"><a href="/services" class="navbar-li-a">Services</a></li>
+				<li id="solutions" class="navbar-li"><a href="/solutions" class="navbar-li-a">Solutions</a></li>
+				<li id="company" class="navbar-li"><a href="/company" class="navbar-li-a">Company</a></li>
+
 			</ul>
 
 		</div><!-- /.navbar-collapse -->
@@ -70,6 +74,11 @@
                 $("button.navbar-toggle").click();
             }
         });
+
     });
+    $('.navbar-li').on('click', function() {
+			var name=$(this).attr('id');
+        tracker.send('event', 'header', 'click', name);
+	});
 
 </script>
